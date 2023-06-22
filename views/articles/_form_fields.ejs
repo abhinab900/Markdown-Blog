@@ -1,0 +1,22 @@
+<div class="flex flex-col justify-around">
+    <div class="flex flex-col mt-5">
+        <label for="title" class="text-2xl mb-2 font-bold">Title</label>
+        <input required value="<%=article.title%>" class="rounded-lg p-4 h-12 text-black" type="text" id="title" name="title">
+    </div>
+
+    <div class="flex flex-col mt-10">
+        <label for="description" class="text-2xl mb-2 font-bold">Description</label>
+        <textarea class="rounded-lg p-4 h-20 text-black" id="description" name="description"><%=article.description%></textarea>
+    </div>
+
+    <div class="flex flex-col mt-10">
+        <label for="markdown" class="text-2xl mb-2 font-bold">Markdown</label>
+        <textarea required class="rounded-lg p-4 h-20 text-black" id="markdown" name="markdown"><%=article.markdown%></textarea>
+    </div>
+
+    <div class="flex mt-10 justify-center">
+        <button type="button" class="h-16 rounded-lg px-6 text-2xl mr-4 bg-gray-500"><a href="/" class="w-full h-full">Cancel</a></button>
+        <button type="submit" class="h-16 rounded-lg px-6 text-2xl mr-4 bg-blue-500">Save</button>
+    </div>
+    
+</div>

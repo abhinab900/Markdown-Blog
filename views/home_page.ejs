@@ -1,0 +1,92 @@
+<%- include('./header') %>
+
+<body class="bg-slate-800 flex flex-col items-center text-white p-12">
+  <div class="w-full max-w-[1600px]">
+    <header class="flex flex-col mx-0 mb-12 w-full justify-center items-center">
+      <h1 class="mb-16 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">
+        My Personal Blog
+      </h1>
+      <input
+        id="search-titles"
+        placeholder="Search titles here"
+        class="bg-slate-800 w-full h-12 sm:h-20 text-xl sm:text-3xl md:text-4xl lg:text-5xl text-center rounded-full border border-slate-500 flex items-center justify-center text-slate-500"/>
+    </header>
+
+    <div
+      id="blogs-grid"
+      class="grid w-full justify-center gap-4 grid-cols-[repeat(auto-fill,minmax(270px,520px))]">
+      <% for(let article of articles){ %>
+      <div
+        class="rounded-md mt-8 p-6 border border-white shadow h-80 flex flex-col justify-around">
+        <div>
+          <div class="mb-2 flex justify-between">
+            <p
+              class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold line-clamp-2 break-keep py-2">
+              <%=article.title%>
+            </p>
+            <form
+              action="/articles/<%= article.id%>?_method=DELETE">
+              <button>
+                <svg
+                  class="border border-white rounded-full bg-red-500 w-8 h-8 p-1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+        <p class="mb-2 break-keep overflow-ellipsis line-clamp-2"><%=article.description%></p>
+        <div
+          class="flex md:flex-row flex-col items-center md:items-end justify-between">
+          <div class="text-opacity-5 line-clamp-1 text text-md">
+            Created at : <%=article.createdAt.toLocaleString('en-IN', {
+            timeZone: 'UTC' })%>
+          </div>
+          <div class="flex">
+            <a
+              href="/articles/show/<%=article.id%>"
+              class="flex items-center h-12 mx-1 px-6 rounded md bg-blue-500">
+              Read More
+            </a>
+            <a
+              href="/articles/edit/<%=article.id%>"
+              class="flex items-center h-12 mx-1 px-6 rounded md bg-yellow-500">
+              Edit
+            </a>
+          </div>
+        </div>
+      </div>
+      <% } %>
+    </div>
+    <a
+      href="/articles/new"
+      class="fixed flex items-center bottom-8 right-8 p-4 rounded-full bg-green-500 text-2xl group transistion-all duration-150">
+      <svg
+        class="w-9"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="white"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 4.5v15m7.5-7.5h-15"/>
+      </svg>
+      <span class="hidden group-hover:flex">Create New Article</span>
+    </a>
+    <script src="search.js"></script>
+  </div>
+
+  <%- include('./footer') %>
+</body>
